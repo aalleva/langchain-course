@@ -1,0 +1,44 @@
+---
+description: "Rules for LangChain and LangGraph agent development"
+globs:
+  - "**/*.py"
+alwaysApply: true
+---
+
+## Package Manager
+- Always use `uv` as the package manager (never pip or poetry)
+- Initialize new projects with: `uv init`
+- Install base dependencies with: `uv add langchain langchain-openai python-dotenv black isort`
+
+## Project Structure
+```
+project/
+├── .env                  # API keys and environment variables (never commit)
+├── .gitignore
+├── main.py               # Entry point
+├── agent/                # Agent logic
+│   ├── __init__.py
+│   └── agent.py
+└── pyproject.toml        # Managed by uv
+```
+
+## Environment Variables
+- Always load env vars using `python-dotenv`
+- Never hardcode API keys in source code
+- Always include a `.env.example` with placeholder values
+```python
+from dotenv import load_dotenv
+load_dotenv()
+```
+
+## LangChain / LangGraph
+- Always check https://docs.langchain.com/ for the latest API before coding
+- Prefer LCEL (LangChain Expression Language) over legacy chains
+- Use `langchain-openai` for OpenAI models (not the base `langchain` OpenAI integration)
+- Prefer `ChatOpenAI` over `OpenAI` for chat-based models
+
+## Code Style
+- Formatter: `black`
+- Import sorter: `isort`
+- Always use type hints on function signatures
+- Use descriptive variable names, avoid abbreviations
