@@ -9,7 +9,7 @@ load_dotenv()
 
 if __name__ == '__main__':
     print("Ingesting...")
-    loader = TextLoader("/Users/aalleva/Documents/devel/001-langchain-intro/langchain-course/mediumblog1.txt")
+    loader = TextLoader("/Users/aalleva/Documents/development/courses/langchain-course/mediumblog1.txt")
     document = loader.load()
 
     print("Splitting...")
